@@ -81,6 +81,26 @@ const NameInput = () => {
   );
 };
 
+const ComponentWithArrayUsingState = () => {
+  const [checkIns, setCheckIns] = useState([]);
+  const addCheckIn = () => {
+    // Read more about Array spreading
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals
+    setCheckIns([...checkIns, Date.now()]);
+  };
+  return (
+    <div>
+      <p>The length of check-ins is {checkIns.length}</p>
+      <ul>
+        {checkIns.map((checkIn) => (
+          <li key={checkIn}>{checkIn}</li>
+        ))}
+      </ul>
+      <button onClick={addCheckIn}>Check in</button>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div className="App">
@@ -106,6 +126,8 @@ const App = () => {
         <Counter />
 
         <NameInput />
+
+        <ComponentWithArrayUsingState />
       </main>
       <SiteFooter />
     </div>
